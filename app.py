@@ -61,7 +61,7 @@ st.markdown("""
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "memory" not in st.session_state:
-    st.session_state.memory = ConversationBufferMemory()
+    st.session_state.memory = ConversationBufferMemory(return_messages=True)
 if "processing" not in st.session_state:
     st.session_state.processing = False
 if "last_query" not in st.session_state:
@@ -108,7 +108,6 @@ with st.sidebar:
     if st.button("🔄 Refresh Connection", use_container_width=True):
         st.cache_resource.clear()
         st.session_state.messages = []
-        st.session_state.memory.clear()
         st.session_state.processing = False
         st.session_state.last_query = None
         st.rerun()
@@ -126,7 +125,7 @@ with st.sidebar:
         "List artists in the 'pop' genre",
         "Show me high-energy dance songs",
         "Which albums were released in 2019?",
-        "Find collaborations between artists"
+        "Give me 100 random songs"
     ]
     
     for example in examples:
@@ -160,6 +159,7 @@ if user_query and user_query != st.session_state.last_query and not st.session_s
     
     # Add user message to history
     st.session_state.messages.append({"role": "user", "content": user_query})
+    st.session_state.memory.chat_memory.add_user_message(user_query)
     
     response_placeholder = st.empty()
     
@@ -179,11 +179,14 @@ if user_query and user_query != st.session_state.last_query and not st.session_s
                     time.sleep(0.3)
                 
                 # Get response
-                result = chain.invoke({"query": user_query})
+                history = "\n".join([f"{m['role']}: {m['content']}" for m in st.session_state.messages[-5:]])
+                contextual_query = f"Conversation so far:\n{history}\n\nUser now asks: {user_query}"
+                result = chain.invoke({"query": contextual_query})
                 
                 if result and 'result' in result:
                     response = result['result']
                     st.session_state.messages.append({"role": "assistant", "content": response})
+                    st.session_state.memory.chat_memory.add_ai_message(response)
                 
                 # Clear typing indicator
                 response_placeholder.empty()
