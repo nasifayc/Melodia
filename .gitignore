@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Streamlit cache & logs
+.streamlit/
+.streamlit_cache/
+
+# Environment variables
+.env
+.env.*
+
+# IDE & editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Jupyter & notebooks (if used)
+.ipynb_checkpoints
+
+# Neo4j specific (if local db files are used)
+data/
+logs/
+import/
+
+# Build & packaging
+build/
+dist/
+*.egg-info/
