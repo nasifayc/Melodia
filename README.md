@@ -1,6 +1,6 @@
-# 🎵 Music Graph Chatbot
+# 🎵 Melodia - Music Graph Chatbot
 
-A sophisticated AI-powered chatbot that leverages the Neo4j graph database and Google Gemini AI to provide intelligent insights about music artists, albums, and songs through natural language queries.
+Melodia - A sophisticated AI-powered chatbot that leverages the Neo4j graph database and Google Gemini AI to provide intelligent insights about music artists, albums, and songs through natural language queries.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white"/>
@@ -227,7 +227,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- **Spotify:** For providing the music dataset
+- **Kaggle Dataset:** For providing the music dataset
 - **Neo4j:** For the powerful graph database platform
 - **Google:** For the Gemini AI language model
 - **Streamlit:** For the excellent web application framework
@@ -254,5 +254,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 > **Note:** This application is for educational and demonstration purposes. Ensure you have proper licenses for commercial use of the data and APIs.
 
 ---
-
-<p align=
